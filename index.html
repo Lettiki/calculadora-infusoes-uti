@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f766e">
+  <title>Calculadora de Infusões UTI</title>
+  <meta name="description" content="Calculadora de infusões contínuas para medicina veterinária intensiva.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>Calculadora de Infusões</h1>
+    <p>UTI veterinária</p>
+  </header>
+
+  <main>
+    <section class="patient card">
+      <label for="weight">Peso do paciente (kg)</label>
+      <input id="weight" type="number" inputmode="decimal" min="0" step="0.1" placeholder="ex.: 12,5">
+    </section>
+
+    <div id="groups"></div>
+
+    <section class="notes card">
+      <h2>Como usar</h2>
+      <ol>
+        <li>Informe o peso do paciente.</li>
+        <li>Em cada fármaco, escolha a <strong>dose</strong>, o <strong>volume total</strong> da seringa/bolsa (mL) e a <strong>taxa de infusão</strong> (mL/h).</li>
+        <li>O site calcula o volume de fármaco, o volume de soro e a duração.</li>
+      </ol>
+      <p><strong>Confira sempre a concentração da medicação.</strong> Se a do seu frasco for diferente da tabela, altere no campo "Concentração" do cartão (o valor é só numérico, na mesma unidade da dose).</p>
+      <p class="muted">Ferramenta de apoio ao cálculo. Não substitui o julgamento clínico do médico veterinário. Baseada na planilha de Andressa Souza.</p>
+    </section>
+  </main>
+
+  <script src="drugs.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
