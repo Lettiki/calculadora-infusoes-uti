@@ -99,7 +99,8 @@ main { max-width: 760px; margin: 0 auto; padding: 0 16px 32px; }
   background: var(--brand-soft);
   border-radius: 14px;
 }
-.patient .badge { font-size: 1.5rem; }
+.patient .badge svg { width: 28px; height: 28px; fill: var(--brand-dark); }
+@media (prefers-color-scheme: dark) { .patient .badge svg { fill: var(--brand); } }
 .patient .field { flex: 1; }
 .patient label { font-weight: 700; color: var(--ink); }
 .input-wrap { position: relative; display: block; }
