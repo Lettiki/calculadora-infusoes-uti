@@ -205,7 +205,20 @@ input:focus {
 @media (prefers-color-scheme: dark) { .done .results dd { color: var(--brand); } }
 
 /* Notas */
-.notes h2 { margin: 0 0 8px; font-size: 1.05rem; font-weight: 800; }
+.notes { margin-top: 14px; }
+.notes summary {
+  font-size: 1.05rem;
+  font-weight: 800;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.notes summary::-webkit-details-marker { display: none; }
+.notes summary::after { content: "▾"; color: var(--muted); transition: transform .2s; }
+.notes:not([open]) summary::after { transform: rotate(-90deg); }
+.notes[open] summary { margin-bottom: 8px; }
 .notes ol { padding-left: 20px; margin: 0 0 10px; }
 .notes li { margin-bottom: 4px; }
 .muted { color: var(--muted); font-size: .85rem; }
