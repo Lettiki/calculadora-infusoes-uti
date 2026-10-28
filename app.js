@@ -20,21 +20,23 @@ function buildCard(drug) {
   el.innerHTML = `
     <header>
       <h3>${drug.name}</h3>
-      <span class="usual">Dose usual: ${fmtNum(drug.min, 3)} – ${fmtNum(drug.max, 3)} ${drug.unit}</span>
+      <div class="chips">
+        <span class="chip">Dose usual ${fmtNum(drug.min, 3)} – ${fmtNum(drug.max, 3)} ${drug.unit}</span>
+        <span class="chip soft">${drug.concLabel}</span>
+      </div>
     </header>
     <div class="fields">
-      <label>Dose escolhida (${drug.unit})
-        <input data-f="dose" type="text" inputmode="decimal" placeholder="${fmtNum(drug.min, 3)}">
+      <label>Dose escolhida
+        <span class="input-wrap" data-unit="${drug.unit}"><input data-f="dose" type="text" inputmode="decimal" placeholder="${fmtNum(drug.min, 3)}"></span>
       </label>
-      <label>Volume total (mL)
-        <input data-f="total" type="text" inputmode="decimal" placeholder="ex.: 20">
+      <label>Volume total
+        <span class="input-wrap" data-unit="mL"><input data-f="total" type="text" inputmode="decimal" placeholder="ex.: 20"></span>
       </label>
-      <label>Taxa de infusão (mL/h)
-        <input data-f="rate" type="text" inputmode="decimal" placeholder="ex.: 2">
+      <label>Taxa de infusão
+        <span class="input-wrap" data-unit="mL/h"><input data-f="rate" type="text" inputmode="decimal" placeholder="ex.: 2"></span>
       </label>
       <label>Concentração
-        <input data-f="conc" type="text" inputmode="decimal" value="${String(drug.conc).replace(".", ",")}">
-        <small>${drug.concLabel}</small>
+        <span class="input-wrap" data-unit="${drug.unit.split("/")[0]}/mL"><input data-f="conc" type="text" inputmode="decimal" value="${String(drug.conc).replace(".", ",")}"></span>
       </label>
     </div>
     <div class="alert" hidden></div>
@@ -79,11 +81,12 @@ function buildCard(drug) {
 }
 
 const groupsEl = document.getElementById("groups");
-for (const g of GROUPS) {
+const GROUP_ICONS = ["❤️", "💉", "💊"];
+GROUPS.forEach((g, i) => {
   const sec = document.createElement("section");
-  sec.innerHTML = `<h2>${g.name}</h2>`;
+  sec.innerHTML = `<h2 class="group-title"><span class="ico" aria-hidden="true">${GROUP_ICONS[i] || "•"}</span>${g.name}</h2>`;
   g.drugs.forEach((d) => sec.appendChild(buildCard(d)));
   groupsEl.appendChild(sec);
-}
+});
 
 weightInput.addEventListener("input", () => cards.forEach((c) => c.update()));
